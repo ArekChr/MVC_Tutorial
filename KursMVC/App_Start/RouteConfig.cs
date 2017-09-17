@@ -15,7 +15,7 @@ namespace KursMVC
 
             routes.MapRoute(
                 name: "StronyStatyczne",
-                url: "strony/{nazwa}.html",
+                url: "strona/{nazwa}.html",
                 defaults: new { controller = "Home", action = "StronyStatyczne" });
 
             routes.MapRoute(
