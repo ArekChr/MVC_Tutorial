@@ -6,18 +6,14 @@ using System.Web.Mvc;
 
 namespace KursMVC.Controllers
 {
-    public class KursyController : Controller
+    public class KoszykController : Controller
     {
-        // GET: Kursy
+        // GET: Koszyk
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Lista(string nazwaKategori)
-        {
-            return View();
-        }
-        public ActionResult Szczegoly(string id)
+        public ActionResult DodajDoKoszyka(string id)
         {
             return View();
         }
