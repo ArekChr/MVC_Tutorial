@@ -1,0 +1,15 @@
+﻿@model IEnumerable<KursMVC.Models.Kategoria>
+@using KursMVC.Infrastructure
+
+<nav class="KategorieVertical">
+    <ul>
+        @foreach (var kategoria in Model)
+        {
+        <li>
+            <a href="@Url.Action("Lista","Kursy", new { nazwaKategori = kategoria.NazwaKategori.ToString() })" 
+               style="background-image: url(@Url.PathCategoryIcon(kategoria.NazwaPlikuIkony)); ">
+            @kategoria.NazwaKategori</a>
+        </li>
+        }
+    </ul>
+</nav>
