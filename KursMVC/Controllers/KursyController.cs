@@ -17,9 +17,11 @@ namespace KursMVC.Controllers
         }
         public ActionResult Lista(string nazwaKategori)
         {
-            return View();
+            var kategoria = db.Kategorie.Include("Kursy").Where(k => k.NazwaKategori.ToUpper() == nazwaKategori.ToUpper()).Single();
+            var kursy = kategoria.Kursy.ToList();
+            return View(kursy);
         }
-        public ActionResult Szczegoly(string id)
+        public ActionResult Szczegoly(int id)
         {
             return View();
         }
