@@ -1,25 +1,25 @@
 ﻿@model IEnumerable <KursMVC.Models.Kurs>
 @using KursMVC.Infrastructure
 
-<ul class="KursyTrzyKolumny KursCena">
-    @foreach (var kurs in Model)
-    {
-        <li>
-            <article>
-                <a class="dodajDoKoszykaLink" href="@Url.Action("DodajDoKoszyka","Koszyk", new { id = kurs.KursID })">
-                    <img src="@Url.Content("~/Content/Images/koszyk.png")" />
-                </a>
-                @if (kurs.Bestseller)
-                {
-                    <div class="bestsellerFlag"></div>
-                }
-                <a class="kursSzczegolyLink" href="@Url.Action("Szczegoly","Kursy", new { id = kurs.KursID })">
-                    <img class="kurs" src="@Url.PathImages(kurs.NazwaPlikuObrazka)" />
-                    <h1>
-                        @kurs.AutorKursu - @kurs.TytulKursu
-                    </h1>
-                </a>
-            </article>
-        </li>
-    }
+    <ul class="KursyTrzyKolumny KursCena">
+        @foreach (var kurs in Model)
+        {
+            <li>
+                <article>
+                    <a class="dodajDoKoszykaLink" href="@Url.Action("DodajDoKoszyka","Koszyk", new { id = kurs.KursID })">
+                        <img src="@Url.Content("~/Content/Images/koszyk.png")" />
+                    </a>
+                    @if (kurs.Bestseller)
+                    {
+                        <div class="bestsellerFlag"></div>
+                    }
+                    <a class="kursSzczegolyLink" href="@Url.Action("Szczegoly","Kursy", new { id = kurs.KursID })">
+                        <img class="kurs" src="@Url.PathImages(kurs.NazwaPlikuObrazka)" />
+                        <h1>
+                            @kurs.AutorKursu - @kurs.TytulKursu
+                        </h1>
+                    </a>
+                </article>
+            </li>
+        }
     </ul>

@@ -15,15 +15,16 @@ namespace KursMVC.Controllers
         {
             return View();
         }
-        public ActionResult Lista(string nazwaKategori)
+        public ActionResult Lista(int kategoriaID)
         {
-            var kategoria = db.Kategorie.Include("Kursy").Where(k => k.NazwaKategori.ToUpper() == nazwaKategori.ToUpper()).Single();
+            var kategoria = db.Kategorie.Include("Kursy").Where(k => k.KategoriaID == kategoriaID).Single();
             var kursy = kategoria.Kursy.ToList();
             return View(kursy);
         }
         public ActionResult Szczegoly(int id)
         {
-            return View();
+            var kurs = db.Kursy.Find(id);
+            return View(kurs);
         }
 
         [ChildActionOnly]
