@@ -15,9 +15,9 @@ namespace KursMVC.Controllers
         {
             return View();
         }
-        public ActionResult Lista(int kategoriaID)
+        public ActionResult Lista(string nazwaKategori)
         {
-            var kategoria = db.Kategorie.Include("Kursy").Where(k => k.KategoriaID == kategoriaID).Single();
+            var kategoria = db.Kategorie.Include("Kursy").Where(k => k.NazwaKategori.ToUpper() == nazwaKategori.ToUpper()).Single();
             var kursy = kategoria.Kursy.ToList();
             return View(kursy);
         }

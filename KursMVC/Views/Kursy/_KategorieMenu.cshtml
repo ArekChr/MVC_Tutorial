@@ -6,7 +6,7 @@
         @foreach (var kategoria in Model)
         {
         <li>
-            <a href="@Url.Action("Lista","Kursy", new { kategoriaID = kategoria.KategoriaID })" 
+            <a href="@Url.Action("Lista","Kursy", new { nazwaKategori = kategoria.NazwaKategori })" 
                style="background-image: url(@Url.PathCategoryIcon(kategoria.NazwaPlikuIkony)); ">
             @kategoria.NazwaKategori</a>
         </li>

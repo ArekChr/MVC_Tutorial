@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista</h2>
-
 <div id="ListaKategoriZawartosc">
 
     @Html.Action("KategorieMenu")
@@ -14,7 +12,7 @@
         <div id="Breadcrumb">
             <img src="../Content/Images/dommaly.png" />
             <a href="link">
-                Start > ASP.NET
+                @Html.MvcSiteMap().SiteMapPath()
             </a>
         </div>
 
