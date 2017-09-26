@@ -1,8 +1,5 @@
 ﻿using KursMVC.DAL;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace KursMVC.Controllers
@@ -28,6 +25,7 @@ namespace KursMVC.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 60000)]
         public ActionResult KategorieMenu()
         {
             var kategorie = db.Kategorie.ToList();
