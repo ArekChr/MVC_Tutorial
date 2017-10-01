@@ -19,7 +19,7 @@ namespace KursMVC.Controllers
 
             List<Kategoria> kategorie;
 
-            if (cache.IsSet(Consts.NowosciCacheKey))
+            if (cache.IsSet(Consts.KategorieCacheKey))
             {
                 kategorie = cache.Get(Consts.KategorieCacheKey) as List<Kategoria>;
             } else {
@@ -39,7 +39,7 @@ namespace KursMVC.Controllers
 
             List<Kurs> bestsellery;
 
-            if (cache.IsSet(Consts.NowosciCacheKey))
+            if (cache.IsSet(Consts.BestselleryCacheKey))
             {
                 bestsellery = cache.Get(Consts.BestselleryCacheKey) as List<Kurs>;
             } else {
