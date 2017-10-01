@@ -40,7 +40,7 @@ namespace KursMVC.Models
 
         public decimal WartoscZamowienia { get; set; }
 
-        List<PozycjaZamowienia> PozycjeZamowienia { get; set; }
+        public List<PozycjaZamowienia> PozycjeZamowienia { get; set; }
     }
 
     public enum StanZamowienia
