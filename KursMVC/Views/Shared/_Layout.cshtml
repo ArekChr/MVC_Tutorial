@@ -9,8 +9,8 @@
     <header>
         <div style="overflow: hidden;">
             <a id="koszykHeaderLink" href="link">
-                Koszyk (0)
-                <span></span>
+                Koszyk <span id="koszyk-naglowek-ilosc-elementow">(@Html.Action("PobierzIloscElementowKoszyka","Koszyk"))</span>
+                
             </a>
             <a id="indexHeaderLogo" href="@Url.Content("~/")">
                 <img src="@Url.Content("~/Content/Images/logo.png")" class="center" />

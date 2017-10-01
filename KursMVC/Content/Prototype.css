@@ -131,7 +131,7 @@ a:hover, a:visited, a:link, a:active {
     text-align: center;
 }
 
-    #koszykHeaderLink > span {
+ /*   #koszykHeaderLink > span {
         width: 42px;
         height: 42px;
         background-color: #0891c4;
@@ -140,7 +140,7 @@ a:hover, a:visited, a:link, a:active {
         background-repeat: no-repeat;
         background-position: center;
     }
-
+     */
 #indexHeaderLogo {
     margin-top: 25px;
     margin-bottom: 35px;
