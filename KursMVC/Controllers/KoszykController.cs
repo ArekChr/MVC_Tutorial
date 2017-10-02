@@ -45,5 +45,22 @@ namespace KursMVC.Controllers
         {
             return koszykManager.PobierzIloscPozycjiKoszyka();
         }
+
+        public ActionResult UsunZKoszyka(int kursId2)
+        {
+            int iloscPozycji = koszykManager.UsunZKoszyka(kursId2);
+            int iloscPozycjiKoszyka = koszykManager.PobierzIloscPozycjiKoszyka();
+            decimal wartoscKoszyka = koszykManager.PobierzWartoscKoszyka();
+
+            var wynik = new KoszykUsuwanieViewModel
+            {
+                IdPozycjiUsuwanej = kursId2,
+                IloscPozycjiUsuwanej = iloscPozycji,
+                KoszykCenaCalkowita = wartoscKoszyka,
+                KoszykIloscPozycji = iloscPozycjiKoszyka
+            };
+
+            return Json(wynik);
+        }
     }
 }

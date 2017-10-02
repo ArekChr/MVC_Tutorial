@@ -32,7 +32,7 @@
                         <td><a href="@Url.Action("Szczegoly", "Kursy", new { id = pozycjaKoszyka.Kurs.KursID })">@pozycjaKoszyka.Kurs.TytulKursu</a></td>
                         <td>Ilość: <span id="koszyk-ilosc-pozycji-@pozycjaKoszyka.Kurs.KursID">@pozycjaKoszyka.Ilosc</span></td>
                         <td>@String.Format("{0:0.##}", pozycjaKoszyka.Wartosc) zł</td>
-                        <td><a class="usun-kurs" data-id="@pozycjaKoszyka.Kurs.KursID" href="#">Usuń</a></td>
+                        <td><a class="usunKurs" data-id="@pozycjaKoszyka.Kurs.KursID" href="#">Usuń</a></td>
                     </tr>
                 }
                 <tr id="koszyk-empty-message" @if (Model.PozycjeKoszyka != null && Model.PozycjeKoszyka.Count > 0) { <text> class="hidden" </text> }>
@@ -52,5 +52,42 @@
         </section>
     </div>
 </div>
+@section Scripts{
+    
+   @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
 
+    <script type="text/javascript">
+        $(function () {
+            $(".usun-kurs").click(function () {
+
+                var recordDoUsuniecia = $this.attr("data - id");
+
+                if (recordDoUsuniecia != '') {
+                    $.post("/Koszyk/UsunZKoszyka", { "kursId2": recordDoUsuniecia },
+                        function (response) {
+                            if (response.IloscPozycjiUsuwanej == 0) {
+
+                                $("#koszyk-wiersz-" + response.IdPozycjiUsuwanej).fadeOut('slow', function () {
+                                    if (response.KoszykIloscPozycji == 0) {
+                                        $("#koszyk-empty-message").removeClass("hidden");
+                                    }
+                                });
+                            } else {
+                                $('#koszyk-ilosc-pozycji-' + response.IdPozycjiUsuwanej).text(response.IloscPozycjiUsuwanej);
+                            }
+
+                            if (response.KoszykIloscPozycji == 0) {
+                                $('#koszyk-button-zaplac').addClass('hidden');
+                                $('#CenaCalkowita').addClass('invisible');
+                            }
+                            $('#calkowita-cena-wartosc').text(response.KoszykCenaCalkowita);
+                            $('#koszyk-naglowek-ilosc-elementow').text(response.KoszykIloscPozycji);
+                        });
+                      return false;
+                   }
+             });
+        });
+    </script>
+
+}
 
