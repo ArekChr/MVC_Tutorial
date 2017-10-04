@@ -33,7 +33,7 @@
             <tr>
                 <td>@Html.LabelFor(o => o.Password, "Hasło:")</td>
                 <td>
-                    @Html.TextBoxFor(o => o.Password)
+                    @Html.PasswordFor(o => o.Password)
                     <div class="login-validation-message">
                         @Html.ValidationMessageFor(o => o.Password)
                     </div>
@@ -43,7 +43,7 @@
             <tr>
                 <td>@Html.LabelFor(o => o.ConfirmPassword, "Potwierdź Hasło:")</td>
                 <td>
-                    @Html.TextBoxFor(o => o.ConfirmPassword)
+                    @Html.PasswordFor(o => o.ConfirmPassword)
                     <div class="login-validation-message">
                         @Html.ValidationMessageFor(o => o.ConfirmPassword)
                     </div>
