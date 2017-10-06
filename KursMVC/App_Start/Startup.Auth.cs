@@ -1,4 +1,5 @@
-﻿using KursMVC.DAL;
+﻿using KursMVC.App_Start;
+using KursMVC.DAL;
 using KursMVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace KursMVC.App_Start
+namespace KursMVC
 {
     public partial class Startup
     {
