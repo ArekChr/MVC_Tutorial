@@ -1,11 +1,7 @@
 ﻿using KursMVC.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace KursMVC.DAL
 {
@@ -25,9 +21,9 @@ namespace KursMVC.DAL
             return new KursyContext();
         }
 
-        public DbSet<Kurs> Kursy { get; set; }
-        public DbSet<Kategoria> Kategorie { get; set; }
-        public DbSet<Zamowienie> Zamowienia { get; set; }
+        public virtual DbSet<Kurs> Kursy { get; set; }
+        public virtual DbSet<Kategoria> Kategorie { get; set; }
+        public virtual DbSet<Zamowienie> Zamowienia { get; set; }
         public DbSet<PozycjaZamowienia> PozycjeZamowienia { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
