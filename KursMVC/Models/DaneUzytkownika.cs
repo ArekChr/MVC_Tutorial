@@ -12,7 +12,9 @@ namespace KursMVC.Models
 
         public string Miasto { get; set; }
 
-        [RegularExpression(@"\+\d{2}*[\d\s-]+", ErrorMessage = "Błędny format numeru telefonu.")]
+        public string KodPocztowy { get; set; }
+
+        [RegularExpression(@"(\+\d{2})*[\d\s-]+", ErrorMessage = "Błędny format numeru telefonu.")]
         public string Telefon { get; set; }
 
         [EmailAddress(ErrorMessage = "Błędny format adresu e-mail.")]

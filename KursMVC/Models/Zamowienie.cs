@@ -9,9 +9,13 @@ namespace KursMVC.Models
     public class Zamowienie
     {
         public int ZamowienieID { get; set; }
+
+        public string UserID { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
         [Required(ErrorMessage = "Wprowadz Imię")]
         [StringLength(50)]
-
         public string Imie { get; set; }
 
         [Required(ErrorMessage = "Wprowadz Nazwisko")]
@@ -20,7 +24,7 @@ namespace KursMVC.Models
 
         [Required(ErrorMessage = "Wprowadz Ulice")]
         [StringLength(100)]
-        public string Ulica { get; set; }
+        public string Adres { get; set; }
 
         [Required(ErrorMessage = "Wprowadz Miasto")]
         [StringLength(100)]
@@ -31,6 +35,8 @@ namespace KursMVC.Models
         public string KodPocztowy{ get; set; }
 
         public string Telefon { get; set; }
+
+        public string Email { get; set; }
 
         public string Komentarz { get; set; }
 

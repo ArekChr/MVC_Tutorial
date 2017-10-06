@@ -1,9 +1,14 @@
-﻿using KursMVC.DAL;
+﻿using KursMVC.App_Start;
+using KursMVC.DAL;
 using KursMVC.Infrastructure;
+using KursMVC.Models;
 using KursMVC.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -61,6 +66,76 @@ namespace KursMVC.Controllers
             };
 
             return Json(wynik);
+        }
+
+        public async Task<ActionResult> Zaplac()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
+
+                var zamowienie = new Zamowienie
+                {
+                    Imie = user.DaneUzytkownika.Imie,
+                    Nazwisko = user.DaneUzytkownika.Nazwisko,
+                    Adres = user.DaneUzytkownika.Adres,
+                    Miasto = user.DaneUzytkownika.Miasto,
+                    KodPocztowy = user.DaneUzytkownika.KodPocztowy,
+                    Email = user.DaneUzytkownika.Email,
+                    Telefon = user.DaneUzytkownika.Telefon
+                };
+                return View(zamowienie);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { returnurl = Url.Action("Zaplac", "Koszyk") });
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Zaplac(Zamowienie zamowienieSzczegoly)
+        {
+            if (ModelState.IsValid)
+            {
+                // pobieramy id uzytkownika aktualnie zalogowanego
+                var userId = User.Identity.GetUserId();
+
+                // utworzenie obiektu zamowienia na podstawie tego co mamy w koszyku
+                var newOrder = koszykManager.UtworzZamowienie(zamowienieSzczegoly, userId);
+
+                // szczegoly uzytkownika - aktualizacja danych
+                var user = await userManager.FindByIdAsync(userId);
+                TryUpdateModel(user.DaneUzytkownika);
+                await userManager.UpdateAsync(user);
+
+                // oproznianie koszyka zakupow
+                koszykManager.PustyKoszyk();
+
+                return RedirectToAction("PotwierdzenieZamowienia");
+            }
+            else
+                return View(zamowienieSzczegoly);
+        }
+
+        public ActionResult PotwierdzenieZamowienia()
+        {
+            return View();
+        }
+
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager userManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
         }
     }
 }

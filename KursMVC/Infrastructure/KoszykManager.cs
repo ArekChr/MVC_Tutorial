@@ -98,7 +98,7 @@ namespace KursMVC.Infrastructure
 
             var koszyk = PobierzKoszyk();
             noweZamowienie.DataDodania = DateTime.Now;
-            //   noweZamowienie.userID = userID;
+            noweZamowienie.UserID = userID;
 
             db.Zamowienia.Add(noweZamowienie);
 
@@ -125,7 +125,6 @@ namespace KursMVC.Infrastructure
             db.SaveChanges();
 
             return noweZamowienie;
-            
         }
 
         public void PustyKoszyk()
