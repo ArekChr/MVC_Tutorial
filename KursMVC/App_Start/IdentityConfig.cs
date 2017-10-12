@@ -29,11 +29,11 @@ namespace KursMVC.App_Start
         }
     }
 
-    // Skonfiguruj menedżera użytkowników aplikacji używanego w tej aplikacji. Interfejs UserManager jest zdefiniowany w produkcie ASP.NET Identity i jest używany przez aplikację.
+    // Skonfiguruj menedżera użytkowników aplikacji używanego w tej aplikacji. 
+    // Interfejs UserManager jest zdefiniowany w produkcie ASP.NET Identity i jest używany przez aplikację.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
-            : base(store)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
         {
         }
 

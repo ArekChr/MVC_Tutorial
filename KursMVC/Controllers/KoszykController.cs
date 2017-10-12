@@ -20,6 +20,7 @@ namespace KursMVC.Controllers
         private ISessionManager sessionManager { get; set; }
         private KursyContext db;
 
+
         public KoszykController()
         {
             db = new KursyContext();
@@ -72,7 +73,7 @@ namespace KursMVC.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
                 var zamowienie = new Zamowienie
                 {
@@ -105,9 +106,9 @@ namespace KursMVC.Controllers
                 var newOrder = koszykManager.UtworzZamowienie(zamowienieSzczegoly, userId);
 
                 // szczegoly uzytkownika - aktualizacja danych
-                var user = await userManager.FindByIdAsync(userId);
+                var user = await UserManager.FindByIdAsync(userId);
                 TryUpdateModel(user.DaneUzytkownika);
-                await userManager.UpdateAsync(user);
+                await UserManager.UpdateAsync(user);
 
                 // oproznianie koszyka zakupow
                 koszykManager.PustyKoszyk();
@@ -123,18 +124,16 @@ namespace KursMVC.Controllers
             return View();
         }
 
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager userManager;
-
-        public ApplicationSignInManager SignInManager
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _signInManager = value;
+                _userManager = value;
             }
         }
     }

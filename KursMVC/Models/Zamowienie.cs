@@ -34,6 +34,9 @@ namespace KursMVC.Models
         [StringLength(6)]
         public string KodPocztowy{ get; set; }
 
+        [Required(ErrorMessage = "Musisz wprowadzić numer telefonu")]
+        [StringLength(20)]
+        [RegularExpression(@"(\+\d{2})*[\d\s-]+", ErrorMessage ="Błędny format numeru telefonu.")]
         public string Telefon { get; set; }
 
         public string Email { get; set; }
